@@ -22,7 +22,5 @@ public class MainController {
     public String profilePage(){
         return "profile";
     }
-
-
-
+    //asvasvasv
 }
