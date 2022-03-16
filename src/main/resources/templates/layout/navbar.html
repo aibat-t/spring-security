@@ -14,6 +14,12 @@
                 <li class="nav-item" sec:authorize="isAnonymous()">
                     <a class="nav-link" th:href="@{'/signin'}">Sign In</a>
                 </li>
+                <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                    <a class="nav-link" th:href="@{'/adminpanel'}">Admin Panel</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyRole('ROLE_MODERATOR')">
+                    <a class="nav-link" th:href="@{'/moderatorpanel'}">Moderator Panel</a>
+                </li>
                 <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span th:text="${currentUser!=null ? currentUser.fullName : ''}"></span>

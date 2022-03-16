@@ -27,7 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.authorizeRequests().antMatchers("/css/**", "/js/**").permitAll();
+
+        http.exceptionHandling().accessDeniedPage("/403");
+
         http.formLogin()
                 .loginProcessingUrl("/auth").permitAll()
                 .usernameParameter("user_email")

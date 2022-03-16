@@ -26,4 +26,24 @@ public class MainController extends BaseController {
         model.addAttribute("currentUser", getCurrentUser());
         return "profile";
     }
+
+    @GetMapping(value = "/adminpanel")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public String adminPanel(Model model){
+        model.addAttribute("currentUser", getCurrentUser());
+        return "adminpanel";
+    }
+
+    @GetMapping(value = "/moderatorpanel")
+    @PreAuthorize("hasAnyRole('ROLE_MODERATOR')")
+    public String moderatorPanel(Model model){
+        model.addAttribute("currentUser", getCurrentUser());
+        return "moderatorpanel";
+    }
+
+    @GetMapping(value = "/403")
+    public String accessDeniedPage(Model model){
+        model.addAttribute("currentUser", getCurrentUser());
+        return "403";
+    }
 }
