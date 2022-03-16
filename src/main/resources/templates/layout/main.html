@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spring Security</title>
+        <link rel="stylesheet" type="text/css" th:href="@{'/css/bootstrap.min.css'}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div th:insert="~{layout/navbar.html}"></div>
+                </div>
+            </div>
+        </div>
+        <div style="min-height: 700px;" layout:fragment="mainContentPage">
+        </div>
+        <div class="container-fluid bg-dark py-1">
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-light text-center">Copyright  &copy; 2022. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script type="text/javascript" th:src="@{'/js/bootstrap.min.js'}"></script>
+</html>
