@@ -4,8 +4,101 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://thymeleaf.org/extras/spring-security" layout:decorate="layout/main.html">
     <div layout:fragment="mainContentPage">
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-6 mx-auto">
+                <div class="row">
+                    <div class="col-12">
+                        <label>NAME</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="item_name" id="item_name_id">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label>MODEL</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="item_model" id="item_model_id">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label>PRICE</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input type="number" class="form-control" name="item_price" id="item_price_id">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success btn-sm" onclick="addItem()">ADD ITEM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-10 mx-auto">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>MODEL</th>
+                            <th>PRICE</th>
+                            <th width="10%">DETAILS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+                <script type="text/javascript">
+                    function addItem(){
+                        let itemName = document.querySelector('#item_name_id');
+                        let itemModel = document.querySelector('#item_model_id');
+                        let itemPrice = document.querySelector('#item_price_id');
+
+                        const xhttp = new XMLHttpRequest();
+                        xhttp.onload = function() {
+                            loadItems();
+                        }
+                        xhttp.open("POST", "/api/additem");
+                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        xhttp.send("name="+itemName.value+"&model="+itemModel.value+"&price="+itemPrice.value);
+
+                        itemName.value = "";
+                        itemPrice.value = "";
+                        itemModel.value = "";
+                    }
+                    function loadItems(){
+                        const xhttp = new XMLHttpRequest();
+                        xhttp.onload = function() {
+                            let jsonObj = this.responseText;
+                            let itemsArray = JSON.parse(jsonObj);
+                            let htmlCode = "";
+                            for(let i = 0; i < itemsArray.length; i++){
+                                htmlCode += "<tr>";
+                                htmlCode += "<td>"+itemsArray[i].id+"</td>";
+                                htmlCode += "<td>"+itemsArray[i].name+"</td>";
+                                htmlCode += "<td>"+itemsArray[i].model+"</td>";
+                                htmlCode += "<td>"+itemsArray[i].price+"</td>";
+                                htmlCode += "<td><button class='btn btn-primary btn-sm'>DETAILS</button></td>";
+                                htmlCode += "</tr>";
+                            }
+                            document.getElementById("tableBody").innerHTML = htmlCode;
+
+                        }
+                        xhttp.open("GET", "/api/allitems");
+                        xhttp.send();
+                    }
+                    window.onload = loadItems();
+                </script>
             </div>
         </div>
     </div>

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GrantUserRepository extends JpaRepository<GrantAccess, Long> {
+    GrantAccess findByAccessValue(String accessValue);
 }

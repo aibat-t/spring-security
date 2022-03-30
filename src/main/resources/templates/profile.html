@@ -6,7 +6,43 @@
     <div layout:fragment="mainContentPage">
         <div class="row">
             <div class="col-6 mx-auto">
-                WELCOME <span th:text="${currentUser!=null ? currentUser.fullName : ''}"></span>
+                <form th:action="@{'/updatepassword'}" method="post">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>OLD PASSWORD</label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <input type="password" name="user_old_password" class="form-control" placeholder="Insert old password..." required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label>NEW PASSWORD</label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <input type="password" name="user_new_password" class="form-control" placeholder="Insert new password..." required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label>REPEAT NEW PASSWORD</label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <input type="password" name="user_new_re_password" class="form-control" placeholder="Repeat new password..." required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <button class="btn btn-success">Update Password</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

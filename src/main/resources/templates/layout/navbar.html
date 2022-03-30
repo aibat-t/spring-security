@@ -14,6 +14,9 @@
                 <li class="nav-item" sec:authorize="isAnonymous()">
                     <a class="nav-link" th:href="@{'/signin'}">Sign In</a>
                 </li>
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link" th:href="@{'/signup'}">Sign Up</a>
+                </li>
                 <li class="nav-item" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                     <a class="nav-link" th:href="@{'/adminpanel'}">Admin Panel</a>
                 </li>
@@ -25,7 +28,7 @@
                         <span th:text="${currentUser!=null ? currentUser.fullName : ''}"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" th:href="@{'/profile'}">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="JavaScript:void(0)" onclick="document.getElementById('signOutForm').submit()">Sign Out</a></li>
